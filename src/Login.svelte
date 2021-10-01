@@ -1,15 +1,15 @@
 <script>
-    import { user } from "./user";
+    import { user, username } from "./user";
 
-    let username;
-    let password;
+    let username_val;
+    let password_val;
 
     function login() {
-        user.auth(username, password, ({err}) => err && alert(err));
+        user.auth(username_val, password_val, ({err}) => err && alert(err));
     }
 
-    function singnup() {
-        user.creat(username, password, ({err}) => {
+    function signup() {
+        user.create(username_val, password_val, ({err}) => {
             if(err){
                 alert(err)
             }else{
@@ -21,10 +21,10 @@
 </script>
 
 <label for="username">Username</label>
-<input name="username" bind:value={username} minlength="30" maxlength="16" />
+<input name="username" bind:value={username_val} minlength="30" maxlength="16" />
 
 <label for="password">Password</label>
-<input name="password" bind:value={password}  type="password" />
+<input name="password" bind:value={password_val}  type="password" />
 
 <button class="rounded-md bg-black" on:click={login}>Login</button>
-<button class="rounded-md" on:click={singnup}>Sign UP</button>
+<button class="rounded-md" on:click={signup}>Sign UP</button>
