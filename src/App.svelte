@@ -1,41 +1,18 @@
 <script>
 	import Header from "./Header.svelte"
-	import Login from "./Login.svelte"
-	import Chat from "./Chat.svelte"
-	import { username } from './user'
+	import Chat from "./Chat.svelte";
+	import Banner from "./Banner.svelte";
 	export let name;
-
-
 </script>
 
-<main>
-	
+<main class="min-h-screen bg-gray-50">
 	<Header />
-	{#if !$username}
-		<Login />
-	{:else}
-		<Chat/>
-	{/if}
+	<Banner />
+	<Chat />
 </main>
 
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+<style global lang="postcss">
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
 </style>
