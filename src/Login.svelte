@@ -61,4 +61,5 @@
             </form>
         </div>
     </div>
+    <p class="mt-4 text-center no-underline	">Created with ❤️ by <a href="https://miyagami.com" target="_blank">Miyagami</a></p>
 </div>

@@ -11,6 +11,7 @@ export const user = db.user().recall({sessionStorage: true})
 
 // Current user's username
 export const username = writable('');
+export const banner = writable(true);
 
 user.get('alias').on(v => username.set(v));
 

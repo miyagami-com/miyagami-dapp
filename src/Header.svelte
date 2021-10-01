@@ -1,5 +1,5 @@
 <script>
-import { username,user } from './user'
+import { username, user } from './user'
 
 function signOut() {
     user.leave();
@@ -9,7 +9,7 @@ function signOut() {
 
 <div class="relative bg-white">
     <div class="max-w-7xl mx-auto px-4">
-        <div class="flex md:justify-start items-center border-b-2 border-gray-100 py-6 justify-between space-x-4">
+        <div class="flex md:justify-center items-center border-b-2 border-gray-100 py-6 justify-between space-x-4">
             {#if $username}
             <div class="flex justify-start">
                 <a href="/">
