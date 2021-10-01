@@ -7,8 +7,6 @@
 </script>
 
 <main>
-	<Message />
-
 	<Header />
 	<Login />
 </main>
