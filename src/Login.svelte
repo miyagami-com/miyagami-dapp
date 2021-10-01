@@ -8,8 +8,8 @@
         user.auth(username, password, ({err}) => err && alert(err));
     }
 
-    function singnup() {
-        user.creat(username, password, ({err}) => {
+    function signUp() {
+        user.create(username, password, ({err}) => {
             if(err){
                 alert(err)
             }else{
@@ -21,10 +21,9 @@
 </script>
 
 
-<div class="max-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+<div class="flex flex-col justify-center py-8 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-        <img class="mx-auto h-16 w-auto" src="miyagami-logo.png" alt="Workflow">
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 class="mt-6 text-center text-2xl font-extrabold text-gray-900">
             Sign in to your account
         </h2>
     </div>
@@ -42,27 +41,24 @@
                 </div>
 
                 <div>
-                    <label  for="password" class="block text-sm font-medium text-gray-700">
+                    <label for="password" class="block text-sm font-medium text-gray-700">
                         Password
                     </label>
                     <div class="mt-1">
                         <input bind:value={password} id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm">
                     </div>
                 </div>
-
                 <div>
-                    <button   on:click={login} type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    <button   on:click={login} type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                         Login
                     </button>
                 </div>
                 <div>
-                    <button  on:click={singnup} type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                        Sign in
+                    <button  on:click={signUp} type="submit" class="w-full flex justify-center py-2 px-4 border border-grey-50 rounded-md shadow-md text-sm font-medium text-red-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Sign up
                     </button>
                 </div>
             </form>
-
-            
         </div>
     </div>
 </div>

@@ -1,14 +1,11 @@
 <script>
 	import Header from "./Header.svelte"
-	import Login from "./Login.svelte"
-	import Message from "./Message.svelte";
-
-	export let name;
+	import Chat from "./Chat.svelte";
 </script>
 
-<main>
+<main class="min-h-screen bg-gray-50">
 	<Header />
-	<Login />
+	<Chat />
 </main>
 
 <style global lang="postcss">
