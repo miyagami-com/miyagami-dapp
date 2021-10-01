@@ -5,13 +5,14 @@
     import 'gun/axe';
     import { onMount } from 'svelte';
 
+    import Login from "./Login.svelte";
+
     let message = '';
     let messages = []
     const db = GUN();
 
     // Define db
     onMount(() => {
-
         db.get('chatmiyagami').map().once( async (v) => {
             messages = [...messages.slice(-100), v]
         });
@@ -34,32 +35,18 @@
 
 </script>
 
-<label>Username</label>
-<label>Username</label>
-<form on:submit|preventDefault={submitMessage}>
-    <input bind:value={message}/>
-    <button type="submit">say</button>
-</form>
-{#each messages as message}
-   <p> User: {message.user}</p>
-   <p> {message.text}</p>
-   <p> {message.time}</p>
-{/each}
-
-
-<script>
-    import Login from "./Login.svelte";
-    import Message from "./Message.svelte";
-    import { username, user } from './user'
-
-</script>
-
 <div>
     {#if $username}
-        <Message />
+        {#each messages as message}
+            <p> User: {message.user}</p>
+            <p> {message.text}</p>
+            <p> {message.time}</p>
+        {/each}
+        <form on:submit|preventDefault={submitMessage}>
+            <input bind:value={message}/>
+            <button type="submit">say</button>
+        </form>
     {:else}
-        <main>
-            <Login />
-        </main>
+        <Login />
     {/if}
 </div>
