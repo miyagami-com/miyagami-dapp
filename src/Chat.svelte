@@ -42,10 +42,12 @@
             <p> {message.text}</p>
             <p> {message.time}</p>
         {/each}
-        <form on:submit|preventDefault={submitMessage}>
-            <input bind:value={message}/>
-            <button type="submit">say</button>
-        </form>
+        <div class="fixed absolute bottom-0">
+            <form on:submit|preventDefault={submitMessage}>
+                <input bind:value={message}/>
+                <button type="submit">say</button>
+            </form>
+        </div>
     {:else}
         <Login />
     {/if}
