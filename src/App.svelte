@@ -10,7 +10,7 @@
 	<Message />
 
 	<Header />
-<!--	<Login />-->
+	<Login />
 </main>
 
 <style global lang="postcss">
