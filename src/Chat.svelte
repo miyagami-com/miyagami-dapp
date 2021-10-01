@@ -1,10 +1,8 @@
 <script>
     import { username,user } from './user'
- //   import {messages} from './store.js'
     import GUN from 'gun';
     import 'gun/sea';
     import 'gun/axe';
-    import {writable} from 'svelte/store'
     import { onMount } from 'svelte';
 
     let message = '';
@@ -15,16 +13,10 @@
     onMount(() => {
 
         db.get('chatmiyagami').map().once( async (v) => {
-        console.log(v)
-        console.log("added")
-        // $messages = [...$messages, v]
-        // console.log($messages);
-        messages = [...messages.slice(-100), v]
-        console.log(messages);
+            messages = [...messages.slice(-100), v]
         });
 
     })
-    // get messages (limit?)
 
     // function to create/send message
     function submitMessage() {
