@@ -4,6 +4,8 @@
 	import Chat from "./Chat.svelte"
 	import { username } from './user'
 	export let name;
+
+
 </script>
 
 <main>
