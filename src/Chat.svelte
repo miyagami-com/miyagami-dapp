@@ -4,6 +4,7 @@
     import 'gun/sea';
     import 'gun/axe';
     import { onMount } from 'svelte';
+    import Message from './Message.svelte'
 
     let newMessage = '';
     let messages = []
@@ -12,14 +13,15 @@
 
     // Define db
     onMount(() => {
-        db.get('chatMiyagami').map().once( async (data) => {        
+        console.log(messages)
 
+        db.get('chatMiyagami').map().once( async (data) => {        
         var message = {
             text: (await SEA.decrypt(data.text, key)) + '',
-            user: $username,
+            user: data.user,
             time: GUN.state.is(data, 'text')
         }
-        messages = [...messages.slice(-5), message]
+        messages = [...messages.slice(-100), message]
 
         });
         
@@ -51,8 +53,6 @@
     <button type="submit">say</button>
 </form>
 {#each messages as message}
-   <p> User: {message.user}</p>
-   <p> {message.text}</p>
-   <p> {message.time}</p>
+    <Message {message} />
 {/each}
 
