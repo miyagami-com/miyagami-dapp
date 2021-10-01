@@ -1,6 +1,6 @@
 <script>
 import { username,user } from './user'
-import Chat
+import Chat from './Chat.svelte'
 
 function signout() {
     user.leave();

@@ -7,7 +7,7 @@ import {writable} from "svelte/store";
 export const db = GUN();
 
 // Gun user
-export const user = db.user().recall({sessionStorage: true})
+export const user = db.user().recall({sessionStorage: true});
 
 // Current user's username
 export const username = writable('');
@@ -18,6 +18,6 @@ db.on('auth', async (event) => {
     const alias = await user.get('alias');
     username.set(alias);
 
-    console.log(`signed in as ${alias}`);
+    console.log(`signed in as ${alias}`)
 
-})
+});

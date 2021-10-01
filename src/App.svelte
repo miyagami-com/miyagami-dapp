@@ -1,14 +1,19 @@
 <script>
 	import Header from "./Header.svelte"
 	import Login from "./Login.svelte"
-
+	import Chat from "./Chat.svelte"
+	import { username } from './user'
 	export let name;
 </script>
 
 <main>
 	
 	<Header />
-	<Login />
+	{#if !$username}
+		<Login />
+	{:else}
+		<Chat/>
+	{/if}
 </main>
 
 <style>

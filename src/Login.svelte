@@ -5,11 +5,11 @@
     let password_val;
 
     function login() {
-        user.auth(username_val, password_val, ({err}) => err && alert(err));
+        user.auth(username_val.toLowerCase(), password_val, ({err}) => err && alert(err));
     }
 
     function signup() {
-        user.create(username_val, password_val, ({err}) => {
+        user.create(username_val.toLowerCase(), password_val, ({err}) => {
             if(err){
                 alert(err)
             }else{
