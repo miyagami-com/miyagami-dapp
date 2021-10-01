@@ -1,6 +1,5 @@
 <script>
 import { username,user } from './user'
-import Chat from './Chat.svelte'
 
 function signout() {
     user.leave();
@@ -21,7 +20,6 @@ function signout() {
         Sign Out
     </button>
 
-    <Chat></Chat>
     {:else}
     <h3>Miyagami Chat</h3>
     {/if}
