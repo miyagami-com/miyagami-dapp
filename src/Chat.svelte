@@ -1,32 +1,48 @@
 <script>
-    import { username,user } from './user'
+    import { username } from './user'
     import GUN from 'gun';
     import 'gun/sea';
     import 'gun/axe';
     import { onMount } from 'svelte';
+    import Message from './Message.svelte'
 
+    let newMessage = '';
     import Login from "./Login.svelte";
 
     let message = '';
     let messages = []
     const db = GUN();
+    let key = "thisisthekey"
 
     // Define db
     onMount(() => {
-        db.get('chatmiyagami').map().once( async (v) => {
-            messages = [...messages.slice(-100), v]
+        console.log(messages)
+
+        db.get('chatMiyagami').map().once( async (data) => {
+        var message = {
+            text: (await SEA.decrypt(data.text, key)) + '',
+            user: data.user,
+            time: GUN.state.is(data, 'text')
+        }
+        messages = [...messages.slice(-100), message]
+
         });
 
     })
 
     // function to create/send message
-    function submitMessage() {
-        const itemname = new Date().toISOString();
-        db.get('chatmiyagami').get(itemname).put({
-            text: message,
+    async function submitMessage() {
+
+        const secret = await SEA.encrypt(newMessage, key);
+        console.log({secret});
+        const message = db.get("chatMiyagami").set({
+            text: secret,
             user: $username,
             time: new Date().toISOString()
-        })
+            });
+        const itemname = new Date().toISOString();
+        db.get('chatMiyagami').get(itemname).put(message)
+
     }
 
         // encrypt messages
@@ -38,13 +54,11 @@
 <div>
     {#if $username}
         {#each messages as message}
-            <p> User: {message.user}</p>
-            <p> {message.text}</p>
-            <p> {message.time}</p>
+            <Message {message} />
         {/each}
         <div class="fixed absolute bottom-0">
             <form on:submit|preventDefault={submitMessage}>
-                <input bind:value={message}/>
+                <input bind:value={newMessage}/>
                 <button type="submit">say</button>
             </form>
         </div>
