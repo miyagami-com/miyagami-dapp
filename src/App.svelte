@@ -1,14 +1,16 @@
 <script>
 	import Header from "./Header.svelte"
 	import Login from "./Login.svelte"
+	import Message from "./Message.svelte";
 
 	export let name;
 </script>
 
 <main>
+	<Message />
 
 	<Header />
-	<Login />
+<!--	<Login />-->
 </main>
 
 <style global lang="postcss">
