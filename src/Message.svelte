@@ -1,27 +1,33 @@
 <script>
-    import { username } from './user'
+    import {username} from './user'
 
     export let message;
 
-    let sent = "sm:flex sm:justify-between sm:items-baseline bg-red-100 flex-row-reverse"
-    let received = "bg-white-100 "
-
-    const messageClass = message.user === $username ? sent : received;
-
-    console.log(message.user, $username)
+    const messageClass = message.user === $username;
 
     const ts = new Date(message.time);
 
-  
 
-  </script>
+</script>
 
-
-  <div class={messageClass}>
-    <div>
-      <p class="text-gray-600">{message.text}</p>
-      <time>{ts.toLocaleTimeString()}</time>
+{#if message.user === $username}
+  <div class="my-2 flex flex-col items-end">
+    <div class="bg-red-100 shadow-md px-4 py-2 my-1 rounded-2xl flex flex-col text-right">
+      <span class="text-red-800 font-semibold">{$username}</span>
+      {message.text}
     </div>
+    <time class="mr-2">{ts.toLocaleTimeString()}</time>
   </div>
+{:else}
+  <div class="my-2 flex flex-col items-start">
+    <div class="bg-white shadow-md px-4 py-2 my-1 rounded-2xl flex flex-col text-left">
+      <span class="font-semibold">{message.user}</span>
+      {message.text}
+    </div>
+    <time class="ml-2">{ts.toLocaleTimeString()}</time>
+  </div>
+{/if}
+
+
 
 

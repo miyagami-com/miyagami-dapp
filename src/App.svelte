@@ -5,7 +5,7 @@
 	export let name;
 </script>
 
-<main class="min-h-screen bg-gray-50 relative overflow-x-hidden">
+<main class="min-h-screen bg-gray-50">
 	<Header />
 	<Banner />
 	<Chat />

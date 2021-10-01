@@ -7,7 +7,7 @@ function signOut() {
 }
 </script>
 
-<div class="bg-white sticky left-0 top-0 z-50">
+<div class="bg-white fixed left-0 top-0 z-50 w-full">
     <div class="max-w-lg mx-auto px-4">
         <div class="flex border-b-2 border-gray-100 py-6 justify-between space-x-4">
             {#if $username}
