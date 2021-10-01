@@ -18,8 +18,11 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "autoprefixer": "^9.8.7",
     "gun": "^0.2020.1235",
+    "postcss": "^7.0.38",
     "sirv-cli": "^1.0.0",
-    "tailwindcss": "^2.2.16"
+    "svelte-preprocess": "^4.9.7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.16"
   }
 }
