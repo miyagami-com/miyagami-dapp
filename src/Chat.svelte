@@ -2,7 +2,7 @@
 <script>
     import Login from "./Login.svelte";
     import Message from "./Message.svelte";
-    import { username,user } from './user'
+    import { username, user } from './user'
 
 </script>
 
