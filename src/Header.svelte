@@ -8,8 +8,8 @@ function signOut() {
 </script>
 
 <div class="relative bg-white">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="flex md:justify-center items-center border-b-2 border-gray-100 py-6 justify-between space-x-4">
+    <div class="max-w-lg mx-auto px-4">
+        <div class="flex md:justify-center border-b-2 border-gray-100 py-6 justify-between space-x-4">
             {#if $username}
             <div class="flex justify-start">
                 <a href="/">
