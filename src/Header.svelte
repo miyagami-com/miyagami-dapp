@@ -1,10 +1,10 @@
 <script>
 import { username,user } from './user'
+import Chat
 
 function signout() {
     user.leave();
-    username.set("")
-    
+    username.set('')
 }
 
 </script>
@@ -20,6 +20,8 @@ function signout() {
     <button class="rounded-md" on:click={signout}>
         Sign Out
     </button>
+
+    <Chat></Chat>
     {:else}
     <h3>Miyagami Chat</h3>
     {/if}
