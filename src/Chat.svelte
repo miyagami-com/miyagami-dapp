@@ -53,7 +53,7 @@
             <Message {message}/>
         {/each}
         </div>
-        <div class=" sticky left-0 bottom-0 bg-white w-full border-t-2 border-gray-100">
+        <div class="sticky left-0 bottom-0 bg-white w-full border-t-2 border-gray-100">
             <form class="p-4 max-w-lg mx-auto" on:submit|preventDefault={submitMessage}>
                 <div>
                     <label for="newMessage" class="block text-sm font-medium text-gray-700">Message</label>

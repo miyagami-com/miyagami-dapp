@@ -7,9 +7,9 @@ function signOut() {
 }
 </script>
 
-<div class="relative bg-white">
+<div class="bg-white sticky left-0 top-0 z-50">
     <div class="max-w-lg mx-auto px-4">
-        <div class="flex md:justify-center border-b-2 border-gray-100 py-6 justify-between space-x-4">
+        <div class="flex border-b-2 border-gray-100 py-6 justify-between space-x-4">
             {#if $username}
             <div class="flex justify-start">
                 <a href="/">
@@ -25,7 +25,7 @@ function signOut() {
                 </a>
             </div>
             {:else}
-            <div class="flex justify-start">
+            <div class="flex justify-center">
                 <a href="/">
                     <img class="h-10 w-auto rounded-full mr-3" src="/miyagami-logo.png" alt="">
                 </a>
