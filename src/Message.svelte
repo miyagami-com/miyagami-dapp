@@ -2,16 +2,26 @@
     import { username } from './user'
 
     export let message;
-    const messageClass = message.user === $username ? 'sent' : 'received';
+
+    let sent = "sm:flex sm:justify-between sm:items-baseline bg-red-100 flex-row-reverse"
+    let received = "bg-white-100 "
+
+    const messageClass = message.user === $username ? sent : received;
+
     console.log(message.user, $username)
 
     const ts = new Date(message.time);
+
+  
+
   </script>
 
-  <div class={`message ${messageClass}`}>
-    <div class="message-text">
-      <p>{message.text}</p>
 
+  <div class={messageClass}>
+    <div>
+      <p class="text-gray-600">{message.text}</p>
       <time>{ts.toLocaleTimeString()}</time>
     </div>
   </div>
+
+
