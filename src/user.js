@@ -3,8 +3,9 @@ import 'gun/sea';
 import 'gun/axe';
 import {writable} from "svelte/store";
 
+const peer = GUN_PEER;
 // Gun database
-export const db = GUN({peers: 'https://miyagami-dapp.vercel.app/'});
+export const db = GUN({peers: peer});
 
 // Gun user
 export const user = db.user().recall({sessionStorage: true});

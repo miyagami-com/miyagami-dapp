@@ -8,8 +8,9 @@
     import debounce from 'lodash.debounce';
     import Login from "./Login.svelte";
 
-    const db = GUN({peers: 'https://miyagami-dapp.vercel.app/'});
+    const peer = GUN_PEER;
     const key = AES_KEY;
+    const db = GUN({peers: peer});
 
     let newMessage = '';
     let messages = []
