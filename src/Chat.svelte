@@ -19,13 +19,15 @@
     let unreadMessages = false;
 
     function autoScroll() {
-        setTimeout(() => scrollBottom?.scrollIntoView({ behavior: 'auto' }), 50);
+        setTimeout(() => scrollBottom?.scrollIntoView({behavior: 'auto'}), 50);
         unreadMessages = false;
     }
+
     function watchScroll(e) {
         canAutoScroll = (e.target.scrollTop || Infinity) > lastScrollTop;
         lastScrollTop = e.target.scrollTop;
     }
+
     $: debouncedWatchScroll = debounce(watchScroll, 1000);
 
     // Define db
@@ -57,7 +59,7 @@
                         }
                     }
                 }
-        });
+            });
 
     })
 
@@ -78,9 +80,9 @@
 <div class="">
     {#if $username}
         <div class="p-4 max-w-lg mx-auto flex flex-col min-h-screen">
-        {#each messages as message (message.when)}
-            <Message {message} sender="{$username}"/>
-        {/each}
+            {#each messages as message (message.when)}
+                <Message {message} sender="{$username}"/>
+            {/each}
         </div>
         <div class="sticky left-0 bottom-0 bg-white w-full border-t-2 border-gray-100">
             <form class="p-4 max-w-lg mx-auto" on:submit|preventDefault={submitMessage}>

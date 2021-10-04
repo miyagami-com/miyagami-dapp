@@ -5,11 +5,11 @@
     let password;
 
     function login() {
-        user.auth(username.toLowerCase(), password, ({err}) => err && alert(err));
+        user.auth(username, password, ({err}) => err && alert(err));
     }
 
     function signUp() {
-        user.create(username.toLowerCase(), password, ({err}) => {
+        user.create(username, password, ({err}) => {
             if(err){
                 alert(err)
             }else{
@@ -61,5 +61,5 @@
             </div>
         </div>
     </div>
-    <p class="mt-4 text-center no-underline	">Created with ❤️  by <a href="https://miyagami.com" target="_blank">Miyagami</a></p>
+    <p class="mt-4 text-center no-underline	">Created with ❤️ by <a href="https://miyagami.com" target="_blank">Miyagami</a></p>
 </div>
