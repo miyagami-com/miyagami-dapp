@@ -1,4 +1,4 @@
-<div class="relative bg-red-600 rounded-md">
+<div class="relative bg-red-600 rounded-md mt-24">
     <div class="p-4 max-w-lg mx-auto ">
         <div class=" text-start">
             <p class="font-medium text-white">
