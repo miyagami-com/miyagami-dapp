@@ -43,7 +43,8 @@ export default {
 	},
 	plugins: [
 		replace({
-			AES_KEY: JSON.stringify(process.env.AES_KEY)
+			AES_KEY: JSON.stringify(process.env.AES_KEY),
+			GUN_PEER: JSON.stringify(process.env.GUN_PEER)
 		}),
 		svelte({
 			preprocess: sveltePreprocess({
