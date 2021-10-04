@@ -4,7 +4,7 @@ import 'gun/axe';
 import {writable} from "svelte/store";
 
 // Gun database
-export const db = GUN();
+export const db = GUN({peers: 'https://miyagami-dapp.vercel.app/'});
 
 // Gun user
 export const user = db.user().recall({sessionStorage: true});
