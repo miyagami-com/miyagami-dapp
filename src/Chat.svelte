@@ -5,31 +5,14 @@
     import 'gun/axe';
     import {onMount} from 'svelte';
     import Message from './Message.svelte'
-    import debounce from 'lodash.debounce';
     import Login from "./Login.svelte";
 
     const peer = GUN_PEER;
     const key = AES_KEY;
-    const db = GUN({peers: peer});
+    const db = GUN({peers: [peer, 'https://gun-chat-dapp.web.app/gun', 'https://miyagami-dapp.vercel.app/gun']});
 
     let newMessage = '';
     let messages = []
-    let scrollBottom;
-    let lastScrollTop;
-    let canAutoScroll = true;
-    let unreadMessages = false;
-
-    function autoScroll() {
-        setTimeout(() => scrollBottom?.scrollIntoView({behavior: 'auto'}), 50);
-        unreadMessages = false;
-    }
-
-    function watchScroll(e) {
-        canAutoScroll = (e.target.scrollTop || Infinity) > lastScrollTop;
-        lastScrollTop = e.target.scrollTop;
-    }
-
-    $: debouncedWatchScroll = debounce(watchScroll, 1000);
 
     // Define db
     onMount(() => {
@@ -42,7 +25,7 @@
             '-': 1, // filter in reverse
         };
 
-        db.get('MiyagamiDAPP')
+        db.get('chat')
             .map(match)
             .once(async (data) => {
                 if (data) {
@@ -53,11 +36,6 @@
                     }
                     if (message.what) {
                         messages = [...messages.slice(-100), message].sort((a, b) => a.when - b.when);
-                        if (canAutoScroll) {
-                            autoScroll();
-                        } else {
-                            unreadMessages = true;
-                        }
                     }
                 }
             });
@@ -71,16 +49,14 @@
             what: secret,
         });
         const index = new Date().toISOString();
-        db.get('MiyagamiDAPP').get(index).put(message)
+        db.get('chat').get(index).put(message)
         newMessage = '';
-        canAutoScroll = true;
-        autoScroll();
     }
 </script>
 
-<div class="">
+<div>
     {#if $username}
-        <div class="p-4 max-w-lg mx-auto flex flex-col min-h-screen">
+        <div class="p-4 max-w-lg mx-auto flex flex-col chat ">
             {#each messages as message (message.when)}
                 <Message {message} sender="{$username}"/>
             {/each}
@@ -103,16 +79,6 @@
                 </div>
             </form>
         </div>
-        {#if !canAutoScroll}
-            <div class="fixed bottom-4 right-2 white ">
-                <button on:click={autoScroll} class:red={unreadMessages}>
-                    {#if unreadMessages}
-                        💬
-                    {/if}
-                    👇
-                </button>
-            </div>
-        {/if}
     {:else}
         <Login/>
     {/if}

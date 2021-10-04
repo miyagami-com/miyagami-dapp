@@ -22,8 +22,6 @@
   "dependencies": {
     "autoprefixer": "^9.8.7",
     "gun": "^0.2020.1235",
-    "lodash.debounce": "^4.0.8",
-    "lodash.throttle": "^4.1.1",
     "postcss": "^7.0.38",
     "postcss-nested": "^5.0.6",
     "sirv-cli": "^1.0.0",

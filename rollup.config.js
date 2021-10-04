@@ -44,7 +44,8 @@ export default {
 	plugins: [
 		replace({
 			AES_KEY: JSON.stringify(process.env.AES_KEY),
-			GUN_PEER: JSON.stringify(process.env.GUN_PEER)
+			GUN_PEER: JSON.stringify(process.env.GUN_PEER),
+			preventAssignment: true
 		}),
 		svelte({
 			preprocess: sveltePreprocess({
@@ -73,7 +74,8 @@ export default {
 		// https://github.com/rollup/plugins/tree/master/packages/commonjs
 		resolve({
 			browser: true,
-			dedupe: ['svelte']
+			dedupe: ['svelte'],
+			preferBuiltins: false
 		}),
 		commonjs(),
 

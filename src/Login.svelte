@@ -21,7 +21,7 @@
 </script>
 
 
-<div class="flex flex-col justify-center py-8 sm:px-6 lg:px-8">
+<div class="flex flex-col py-8 sm:px-6 lg:px-8 login">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 class="mt-6 text-center text-2xl font-extrabold text-gray-900">
             Sign in to your account

@@ -4,7 +4,7 @@
 	import Banner from "./Banner.svelte";
 </script>
 
-<main class="min-h-screen bg-gray-50">
+<main class="bg-gray-50 h-screen">
 	<Header />
 	<Banner />
 	<Chat />

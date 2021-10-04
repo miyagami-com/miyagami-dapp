@@ -5,7 +5,7 @@ import {writable} from "svelte/store";
 
 const peer = GUN_PEER;
 // Gun database
-export const db = GUN({peers: peer});
+const db = GUN({peers: [peer, 'https://gun-chat-dapp.web.app/gun', 'https://miyagami-dapp.vercel.app/gun']});
 
 // Gun user
 export const user = db.user().recall({sessionStorage: true});

@@ -6,6 +6,7 @@ html, body {
 
 body {
 	color: #333;
+	background: #F9FAFB;
 	margin: 0;
 	padding: 8px;
 	box-sizing: border-box;
@@ -60,4 +61,12 @@ button:not(:disabled):active {
 
 button:focus {
 	border-color: #666;
+}
+
+.chat {
+	min-height: calc(100vh - 266px)
+}
+
+.login {
+	min-height: calc(100vh - 166px)
 }
