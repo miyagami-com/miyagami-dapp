@@ -10,6 +10,8 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-replace": "^3.0.0",
+    "dotenv": "^10.0.0",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
@@ -20,6 +22,8 @@
   "dependencies": {
     "autoprefixer": "^9.8.7",
     "gun": "^0.2020.1235",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
     "postcss": "^7.0.38",
     "postcss-nested": "^5.0.6",
     "sirv-cli": "^1.0.0",

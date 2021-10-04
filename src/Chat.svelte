@@ -1,59 +1,88 @@
 <script>
-    import {username} from './user'
+    import {username, user} from './user'
     import GUN from 'gun';
     import 'gun/sea';
     import 'gun/axe';
     import {onMount} from 'svelte';
     import Message from './Message.svelte'
-
-    let newMessage = '';
+    import debounce from 'lodash.debounce';
     import Login from "./Login.svelte";
 
-    let message = '';
-    let messages = []
     const db = GUN();
-    let key = "thisisthekey"
+    const key = AES_KEY;
+
+    let newMessage = '';
+    let messages = []
+    let scrollBottom;
+    let lastScrollTop;
+    let canAutoScroll = true;
+    let unreadMessages = false;
+
+    function autoScroll() {
+        setTimeout(() => scrollBottom?.scrollIntoView({ behavior: 'auto' }), 50);
+        unreadMessages = false;
+    }
+    function watchScroll(e) {
+        canAutoScroll = (e.target.scrollTop || Infinity) > lastScrollTop;
+        lastScrollTop = e.target.scrollTop;
+    }
+    $: debouncedWatchScroll = debounce(watchScroll, 1000);
 
     // Define db
     onMount(() => {
-        console.log(messages)
+        let match = {
+            // lexical queries are kind of like a limited RegEx or Glob.
+            '.': {
+                // property selector
+                '>': new Date(+new Date() - 1000 * 60 * 60 * 3).toISOString(), // find any indexed property larger ~3 hours ago
+            },
+            '-': 1, // filter in reverse
+        };
 
-        db.get('chatMiyagami').map().once(async (data) => {
-            var message = {
-                text: (await SEA.decrypt(data.text, key)) + '',
-                user: data.user,
-                time: GUN.state.is(data, 'text')
-            }
-            messages = [...messages.slice(-100), message]
-
+        db.get('MiyagamiDAPP')
+            .map(match)
+            .once(async (data) => {
+                if (data) {
+                    let message = {
+                        what: (await SEA.decrypt(data.what, key)) + '',
+                        who: await db.user(data).get('alias'),
+                        when: GUN.state.is(data, 'what')
+                    }
+                    if (message.what) {
+                        messages = [...messages.slice(-100), message].sort((a, b) => a.when - b.when);
+                        if (canAutoScroll) {
+                            autoScroll();
+                        } else {
+                            unreadMessages = true;
+                        }
+                    }
+                }
         });
 
     })
 
     // function to create/send message
     async function submitMessage() {
-
         const secret = await SEA.encrypt(newMessage, key);
-        console.log({secret});
-        const message = db.get("chatMiyagami").set({
-            text: secret,
-            user: $username,
-            time: new Date().toISOString()
+        const message = user.get('all').set({
+            what: secret,
         });
-        const itemname = new Date().toISOString();
-        db.get('chatMiyagami').get(itemname).put(message)
-
+        const index = new Date().toISOString();
+        db.get('MiyagamiDAPP').get(index).put(message)
+        newMessage = '';
+        canAutoScroll = true;
+        autoScroll();
     }
 </script>
 
-<div class="py-6">
+<div class="">
     {#if $username}
-        <div class="p-4 max-w-lg mx-auto flex flex-col">
-        {#each messages as message}
-            <Message {message}/>
+        <div class="p-4 max-w-lg mx-auto flex flex-col min-h-screen">
+        {#each messages as message (message.when)}
+            <Message {message} sender="{$username}"/>
         {/each}
         </div>
-        <div class="sticky absolute left-0 bottom-0 bg-white w-full border-t-2 border-gray-100">
+        <div class="sticky left-0 bottom-0 bg-white w-full border-t-2 border-gray-100">
             <form class="p-4 max-w-lg mx-auto" on:submit|preventDefault={submitMessage}>
                 <div>
                     <label for="newMessage" class="block text-sm font-medium text-gray-700">Message</label>
@@ -71,6 +100,16 @@
                 </div>
             </form>
         </div>
+        {#if !canAutoScroll}
+            <div class="fixed bottom-4 right-2 white ">
+                <button on:click={autoScroll} class:red={unreadMessages}>
+                    {#if unreadMessages}
+                        💬
+                    {/if}
+                    👇
+                </button>
+            </div>
+        {/if}
     {:else}
         <Login/>
     {/if}
